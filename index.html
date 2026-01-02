@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Kumar - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Cyberpunk Grid Background */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* Neon scan lines */
+        .scan-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 255, 0.03) 0px,
+                rgba(0, 255, 255, 0) 1px,
+                rgba(0, 255, 255, 0) 2px
+            );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Animated neon lines */
+        .neon-line {
+            position: fixed;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scan 8s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        @keyframes scan {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+
+        /* Glowing corner decorations */
+        .corner-glow {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .corner-glow1 {
+            background: #ff006e;
+            top: -100px;
+            left: -100px;
+            animation: pulse1 4s ease-in-out infinite;
+        }
+
+        .corner-glow2 {
+            background: #00ffff;
+            bottom: -100px;
+            right: -100px;
+            animation: pulse2 5s ease-in-out infinite;
+        }
+
+        .corner-glow3 {
+            background: #8338ec;
+            top: 50%;
+            left: 50%;
+            animation: pulse3 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse1 {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        @keyframes pulse2 {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+        }
+
+        @keyframes pulse3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        /* Futuristic Header */
+        header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 40px #00ffff,
+                0 0 80px #00ffff;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            41.99% { opacity: 1; }
+            42% { opacity: 0.8; }
+            43% { opacity: 1; }
+            45.99% { opacity: 1; }
+            46% { opacity: 0.6; }
+            46.5% { opacity: 1; }
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #ff006e;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff006e;
+        }
+
+        .header-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff006e, #8338ec, transparent);
+            margin: 30px auto;
+            max-width: 600px;
+            animation: slide 3s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        /* Category with Hexagon Style */
+        .category {
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 50px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .category-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, currentColor, transparent);
+            opacity: 0.3;
+        }
+
+        .badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 12px 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+            animation: badge-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes badge-glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .js-group .badge {
+            background: #00ffff;
+            color: #0a0e27;
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        .css-group .badge {
+            background: #ff006e;
+            color: #ffffff;
+            box-shadow: 0 0 20px #ff006e;
+        }
+
+        .html-group .badge {
+            background: #8338ec;
+            color: #ffffff;
+            box-shadow: 0 0 20px #8338ec;
+        }
+
+        .cat-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .js-group .cat-title { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
+        .css-group .cat-title { color: #ff006e; text-shadow: 0 0 10px #ff006e; }
+        .html-group .cat-title { color: #8338ec; text-shadow: 0 0 10px #8338ec; }
+
+        /* Futuristic Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        /* Holographic Cards */
+        .card {
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+        }
+
+        .js-group .card { border-color: rgba(0, 255, 255, 0.3); }
+        .css-group .card { border-color: rgba(255, 0, 110, 0.3); }
+        .html-group .card { border-color: rgba(131, 56, 236, 0.3); }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, currentColor, transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover::before {
+            opacity: 0.3;
+            animation: rotate-border 3s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .js-group .card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .css-group .card:hover {
+            border-color: #ff006e;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.3), inset 0 0 20px rgba(255, 0, 110, 0.1);
+        }
+
+        .html-group .card:hover {
+            border-color: #8338ec;
+            box-shadow: 0 0 30px rgba(131, 56, 236, 0.3), inset 0 0 20px rgba(131, 56, 236, 0.1);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            opacity: 0.1;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Cyber Buttons */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-output {
+            background: transparent;
+            border: 2px solid;
+            color: currentColor;
+        }
+
+        .js-group .btn-output {
+            border-color: #00ffff;
+            color: #00ffff;
+        }
+
+        .css-group .btn-output {
+            border-color: #ff006e;
+            color: #ff006e;
+        }
+
+        .html-group .btn-output {
+            border-color: #8338ec;
+            color: #8338ec;
+        }
+
+        .btn-output:hover {
+            background: currentColor;
+            color: #0a0e27;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .btn-github {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .btn-github:hover {
+            background: #ffffff;
+            color: #0a0e27;
+            border-color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 120px;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; letter-spacing: 4px; }
+            h2 { font-size: 1rem; }
+            .card-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .category-header { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+            .container { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-grid"></div>
+    <div class="scan-lines"></div>
+    <div class="neon-line"></div>
+    <div class="corner-glow corner-glow1"></div>
+    <div class="corner-glow corner-glow2"></div>
+    <div class="corner-glow corner-glow3"></div>
+
+    <div class="container">
+        <header>
+            <div class="glitch-wrapper">
+                <h1>ADITYA KUMAR</h1>
+            </div>
+            <div class="header-line"></div>
+            <h2>[ Webtech Practical ]</h2>
+        </header>
+
+        <script>
+            const githubLinks = [
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question1.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question2.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question3.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question4.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question5.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question6.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question7.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question8.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question9.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question10.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question11.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question12.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question13.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question14.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question15.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question16.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question17.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question18.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question19.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question20.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question21.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question22.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question23.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question24.html",
+                "https://github.com/Aditya0807-01/Webtech_final_assesment/blob/main/question25.html"
+            ];
+        </script>
+
+        <div class="category js-group">
+            <div class="category-header">
+                <span class="badge">JS</span>
+                <span class="cat-title">Logic & Functionality (1-15)</span>
+            </div>
+            <div class="card-grid">
+                <script>
+                    for(let i=1; i<=15; i++) {
+                        document.write(`
+                        <div class="card">
+                            <div class="card-number">${i.toString().padStart(2, '0')}</div>
+                            <div class="card-title">Q${i}</div>
+                            <div class="card-actions">
+                                <a href="question${i}.html" class="btn btn-output">▶ Live</a>
+                                <a href="${githubLinks[i-1]}" target="_blank" class="btn btn-github">&lt;/&gt; Code</a>
+                            </div>
+                        </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="category css-group">
+            <div class="category-header">
+                <span class="badge">CSS</span>
+                <span class="cat-title">Styling & Layout (16-20)</span>
+            </div>
+            <div class="card-grid">
+                <script>
+                    for(let i=16; i<=20; i++) {
+                        document.write(`
+                        <div class="card">
+                            <div class="card-number">${i.toString().padStart(2, '0')}</div>
+                            <div class="card-title">Q${i}</div>
+                            <div class="card-actions">
+                                <a href="question${i}.html" class="btn btn-output">▶ Live</a>
+                                <a href="${githubLinks[i-1]}" target="_blank" class="btn btn-github">&lt;/&gt; Code</a>
+                            </div>
+                        </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="category html-group">
+            <div class="category-header">
+                <span class="badge">HTML</span>
+                <span class="cat-title">Structure & Components (21-25)</span>
+            </div>
+            <div class="card-grid">
+                <script>
+                    for(let i=21; i<=25; i++) {
+                        document.write(`
+                        <div class="card">
+                            <div class="card-number">${i.toString().padStart(2, '0')}</div>
+                            <div class="card-title">Q${i}</div>
+                            <div class="card-actions">
+                                <a href="question${i}.html" class="btn btn-output">▶ Live</a>
+                                <a href="${githubLinks[i-1]}" target="_blank" class="btn btn-github">&lt;/&gt; Code</a>
+                            </div>
+                        </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 Aditya Kumar | Webtech Submission
+        </footer>
+    </div>
+
+</body>
+</html>
